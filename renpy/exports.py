@@ -34,11 +34,6 @@ import threading
 import fnmatch
 import os
 
-if PY2:
-    from urllib import urlencode as _urlencode
-else:
-    from urllib.parse import urlencode as _urlencode
-
 import renpy
 
 from renpy.pyanalysis import const, pure, not_const
@@ -4702,34 +4697,12 @@ def confirm(message):
     return renpy.ui.interact()
 
 
-try:
-    if PY2:
-        import urllib
-        proxies = urllib.getproxies()
-    else:
-        import urllib.request
-        proxies = urllib.request.getproxies()
-except Exception as e:
-    proxies = {}
-
-
 class FetchError(Exception):
     """
     :undocumented:
 
     The type of errors raised by :func:`renpy.fetch`.
     """
-
-    def __init__(self, message, exception=None):
-        super(FetchError, self).__init__(message)
-
-        self.original_exception = exception
-
-        m = re.search(r'\d\d\d', message)
-        if m is not None:
-            self.status_code = int(m.group(0))
-        else:
-            self.status_code = None
 
     pass
 
@@ -4772,11 +4745,11 @@ def fetch_requests(url, method, data, content_type, timeout):
 
     def make_request():
         try:
-            r = requests.request(method, url, data=data, timeout=timeout, headers={ "Content-Type" : content_type } if data is not None else {}, proxies=proxies)
+            r = requests.request(method, url, data=data, timeout=timeout, headers={ "Content-Type" : content_type } if data is not None else {})
             r.raise_for_status()
             resp[0] = r.content # type: ignore
         except Exception as e:
-            resp[0] = FetchError(str(e), e) # type: ignore
+            resp[0] = FetchError(str(e)) # type: ignore
 
     t = threading.Thread(target=make_request)
     t.start()
@@ -4905,7 +4878,12 @@ def fetch(url, method=None, data=None, json=None, content_type=None, timeout=5, 
         raise FetchError("result must be one of 'bytes', 'text', or 'json'.")
 
     if params is not None:
-        url += "?" + _urlencode(params)
+        if PY2:
+            import urllib
+            url += "?" + urllib.urlencode(params)
+        else:
+            import urllib.parse
+            url += "?" + urllib.parse.urlencode(params)
 
     if method is None:
         if data is not None or json is not None:
@@ -4930,15 +4908,12 @@ def fetch(url, method=None, data=None, json=None, content_type=None, timeout=5, 
     if isinstance(content, Exception):
         raise content # type: ignore
 
-    try:
-        if result == "bytes":
-            return content
-        elif result == "text":
-            return content.decode("utf-8")
-        elif result == "json":
-            return _json.loads(content)
-    except Exception as e:
-        raise FetchError("Failed to decode the result: " + str(e), e)
+    if result == "bytes":
+        return content
+    elif result == "text":
+        return content.decode("utf-8")
+    elif result == "json":
+        return _json.loads(content)
 
 
 def can_fullscreen():

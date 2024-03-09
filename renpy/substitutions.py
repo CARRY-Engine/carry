@@ -351,23 +351,21 @@ def substitute(s, scope=None, force=False, translate=True):
     old_s = s
 
 
-    dicts = []
-
-    if scope is not None:
-        dicts.append(scope)
+    dicts = [ renpy.store.__dict__ ]
 
     if "store.interpolate" in renpy.python.store_dicts:
-        dicts.append(renpy.python.store_dicts["store.interpolate"])
+        dicts.insert(0, renpy.python.store_dicts["store.interpolate"])
 
-    dicts.append(renpy.store.__dict__)
+    if scope is not None:
+        dicts.insert(0, scope)
 
-    if len(dicts) == 1:
-        variables = dicts[0]
+    if dicts:
+        kwargs = MultipleDict(*dicts)
     else:
-        variables = MultipleDict(*dicts)
+        kwargs = dicts[0]
 
     try:
-        s = interpolate(s, variables) # type: ignore
+        s = interpolate(s, kwargs) # type: ignore
     except Exception:
         if renpy.display.predict.predicting: # @UndefinedVariable
             return " ", True

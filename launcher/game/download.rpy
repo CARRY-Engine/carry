@@ -21,12 +21,26 @@
 
 init python:
 
-    import requests
-
     import urllib.request
     import os
     import threading
     import time
+
+    ssl_context_cache = None
+
+    def ssl_context():
+        """
+        Returns the SSL context.
+        """
+
+        global ssl_context_cache
+
+        if ssl_context_cache is None:
+            import ssl
+            import certifi
+            ssl_context_cache = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH, cafile=certifi.where())
+
+        return ssl_context_cache
 
     class Downloader(object):
 
@@ -59,7 +73,7 @@ init python:
             try:
                 # Open the URL.
 
-                self.urlfile = requests.get(url, stream=True, proxies=renpy.proxies, timeout=15)
+                self.urlfile = urllib.request.urlopen(url, context=ssl_context())
 
                 t = threading.Thread(target=self.thread)
                 t.daemon = True
@@ -78,16 +92,18 @@ init python:
                 else:
                     length = 0
 
-                for data in self.urlfile.iter_content(1024 * 1024):
+                while not self.cancelled:
+
+                    data = self.urlfile.read(65536)
+
+                    if not data:
+                        break
 
                     count += len(data)
                     self.tmpfile.write(data)
 
                     if length > 0:
                         self.progress = 1.0 * count / length
-
-                    if self.cancelled:
-                        break
 
                 self.tmpfile.close()
 
@@ -105,6 +121,7 @@ init python:
 
             except Exception as e:
                 self.failure = str(e)
+
 
         def safe_unlink(self, fn):
             if os.path.exists(fn):
@@ -147,3 +164,4 @@ init python:
         def periodic(self, st):
             self.adjustment.change(self.downloader.progress)
             return .25
+

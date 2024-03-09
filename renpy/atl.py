@@ -188,6 +188,12 @@ def position_or_none(x):
     return position.from_any(x)
 
 
+def dualangle_or_float_or_none(x):
+    if x is None:
+        return None
+    return DualAngle.from_any(x)
+
+
 def any_object(x):
     return x
 
@@ -309,7 +315,7 @@ def interpolate_spline(t, spline, typ):
     elif t <= 0.0:
         rv = spline[0]
     elif t >= 1.0:
-        rv = spline[-1]
+        rv = spline[ -1]
 
     else:
         # Catmull-Rom (re-adjust the control points)
@@ -1217,10 +1223,7 @@ class RawMultipurpose(RawStatement):
             values = [ ctx.eval(i) for i in exprs ]
 
             if not all(check_spline_types(i) for i in values):
-                if name in { "matrixtransform", "matrixcolor" }:
-                    raise Exception("%s: Spline interpolation requires position types. (You may want to use SplineMatrix.)" % name)
-                else:
-                    raise Exception("%s: Spline interpolation requires position types." % name)
+                raise Exception("%s: Spline interpolation requires position types." % name)
 
             splines.append((name, values))
 
@@ -1616,7 +1619,7 @@ class Interpolation(Statement):
         if anchorangles is not None:
             startangle, endangle = anchorangles[:2]
 
-            anchorangle = interpolate(complete, startangle, endangle, DualAngle.from_any)
+            anchorangle = interpolate(complete, startangle, endangle, dualangle_or_float_or_none)
             trans.state.anchorangle = anchorangle
 
         if anchorradii is not None:

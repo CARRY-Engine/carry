@@ -1404,7 +1404,6 @@ class Input(renpy.text.text.Text): # @UndefinedVariable
     value = None
     shown = False
     multiline = False
-    action = None
 
     st = 0
 
@@ -1425,7 +1424,6 @@ class Input(renpy.text.text.Text): # @UndefinedVariable
                  copypaste=False,
                  caret_blink=None,
                  multiline=False,
-                 action=None,
                  **properties):
 
         super(Input, self).__init__("", style=style, replaces=replaces, substitute=False, **properties)
@@ -1461,8 +1459,6 @@ class Input(renpy.text.text.Text): # @UndefinedVariable
         self.pixel_width = pixel_width
 
         self.multiline = multiline
-
-        self.action = action
 
         caretprops = { 'color' : None }
 
@@ -1649,21 +1645,8 @@ class Input(renpy.text.text.Text): # @UndefinedVariable
             if self.edit_text:
                 content = content[0:self.caret_pos] + self.edit_text + self.content[self.caret_pos:]
 
-            if self.action is not None:
-                rv = run(self.action)
-
-                if rv is not None:
-                    return rv
-                else:
-                    raise renpy.display.core.IgnoreEvent()
-
             if self.value:
-                rv = self.value.enter()
-
-                if rv is not None:
-                    return rv
-                else:
-                    raise renpy.display.core.IgnoreEvent()
+                return self.value.enter()
 
             if not self.changed:
                 return content
