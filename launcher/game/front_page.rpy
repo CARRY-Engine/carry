@@ -74,13 +74,14 @@ screen front_page:
                     add HALF_SPACER
 
                     vbox:
+                        yoffset 40
                         xfill True
 
                         textbutton _("Create New Project"):
-                            xoffset 20
+                            xoffset 30
                             action Jump("new_project")
                         textbutton _("Launch!"):
-                            xoffset 20
+                            xoffset 30
                             text_size 30
                             action project.Launch()
 
@@ -92,7 +93,8 @@ screen front_page:
         idle im.MatrixColor(renpy.easy.displayable("images/logo.png"), im.matrix.brightness(-0.7))
         hover im.MatrixColor(renpy.easy.displayable("images/logo.png"), im.matrix.brightness(0.0))
         at resize_logo
-        action Jump("about") xalign 0.9 yalign 0.8
+        action Jump("about")
+        xalign 0.9 yalign 0.85
 
 # This is used by front_page to display the list of known projects on the screen.
 screen front_page_project_list:
@@ -142,38 +144,45 @@ screen front_page_project:
 
         add SPACER
 
-        grid 2 1:
-            xmaximum 400
-            spacing HALF_INDENT
+        hbox:
 
-            frame style "l_indent":
-                has vbox
+            vbox:
+                xmaximum 500
+                spacing HALF_INDENT
 
-                textbutton _("Navigate Script") action Jump("navigation")
-                textbutton _("Check Script (Lint)") action Call("lint")
+                frame style "l_indent":
+                    has vbox
 
-                if project.current.exists("game/gui.rpy"):
-                    textbutton _("Change/Update GUI") action Jump("change_gui")
-                else:
-                    textbutton _("Change Theme") action Jump("choose_theme")
+                    textbutton _("Navigate Script") action Jump("navigation")
+                    textbutton _("Check Script (Lint)") action Call("lint")
 
+                    if project.current.exists("game/gui.rpy"):
+                        textbutton _("Change/Update GUI") action Jump("change_gui")
+                    else:
+                        textbutton _("Change Theme") action Jump("choose_theme")
 
-                textbutton _("Delete Persistent") action Jump("rmpersistent")
-                textbutton _("Force Recompile") action Jump("force_recompile")
+                    textbutton _("Delete Persistent") action Jump("rmpersistent")
+                    textbutton _("Force Recompile") action Jump("force_recompile")
 
-                # textbutton "Relaunch" action Relaunch
+                    if ability.can_distribute:
+                        textbutton _("Build Distributions") action Jump("build_distributions")
 
-            frame style "l_indent":
-                has vbox
+                    textbutton _("Android") action Jump("android")
+                    textbutton _("iOS") action Jump("ios")
+                    textbutton _("Web") + " " + _("(Beta)") action Jump("web")
+                    textbutton _("Generate Translations") action Jump("translate")
+                    textbutton _("Extract Dialogue") action Jump("extract_dialogue")
 
-                if ability.can_distribute:
-                    textbutton _("Build Distributions") action Jump("build_distributions")
+            vbox:
+                xmaximum 400
+                spacing HALF_INDENT
 
-                textbutton _("Android") action Jump("android")
-                textbutton _("iOS") action Jump("ios")
-                textbutton _("Web") + " " + _("(Beta)") action Jump("web")
-                textbutton _("Generate Translations") action Jump("translate")
-                textbutton _("Extract Dialogue") action Jump("extract_dialogue")
+                frame style "l_indent":
+                    has vbox
+                    if renpy.windows:
+                        textbutton _("Console output") style "l_checkbox" action ToggleField(persistent, "windows_console")
+                    textbutton _("Skip splashscreen") style "l_checkbox" action ToggleField(persistent, "skip_splashscreen")
+                    textbutton _("Developer Mode") style "l_checkbox" action ToggleField(persistent, "run_dev")
 
 label main_menu:
     return

@@ -49,6 +49,8 @@ init python in project:
         _("Press shift+D to access the developer menu."),
         _("Have you backed up your projects recently?"),
         _("Lint checks your game for potential mistakes, and gives you statistics."),
+        _("Nothing happened on August 21."),
+        _("If you remember who Trolleblan is, forget it."),
     ]
 
     class Project(object):
@@ -773,7 +775,7 @@ init python in project:
             persistent.blurb += 1
 
             if persistent.skip_splashscreen:
-                submessage = _("Splashscreen skipped in launcher preferences.")
+                submessage = _("(Splashscreen skipped)")
             else:
                 submessage = None
 

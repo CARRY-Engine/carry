@@ -203,10 +203,9 @@ style l_link_text is l_default:
 
 # Action buttons on the bottom of the screen.
 style l_right_button is l_default:
-    yoffset 20
+    yalign 0.85
     xoffset -10
     xalign 1.0
-    ypos 600 - 128 + 12
     left_margin 8 + INDENT
     right_margin 10 + INDENT
 

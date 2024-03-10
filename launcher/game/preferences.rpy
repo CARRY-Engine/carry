@@ -20,6 +20,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 default persistent.show_edit_funcs = True
+default persistent.run_dev = False
 default persistent.windows_console = False
 default persistent.lint_options = set()
 default persistent.use_web_doc = False
@@ -67,7 +68,7 @@ init python:
 
 
 default persistent.force_new_tutorial = False
-default persistent.sponsor_message = True
+default persistent.sponsor_message = False
 default persistent.daily_update_check = True
 default persistent.daily_update_check_once = False
 
@@ -193,18 +194,10 @@ screen preferences():
 
                             textbutton _("Include private names") style "l_checkbox" action ToggleField(persistent, "navigate_private")
                             textbutton _("Include library names") style "l_checkbox" action ToggleField(persistent, "navigate_library")
-
-                            if renpy.windows:
-                                textbutton _("Console output") style "l_checkbox" action ToggleField(persistent, "windows_console")
-
-                            textbutton _("Skip splashscreen") style "l_checkbox" action ToggleField(persistent, "skip_splashscreen")
-                            textbutton _("Show edit file section") style "l_checkbox" action ToggleField(persistent, "show_edit_funcs")
-                            textbutton _("Large fonts") style "l_checkbox" action [ ToggleField(persistent, "large_print"), renpy.utter_restart ]
+                            textbutton _("Show edit file section") style "l_checkbox" action ToggleField(persistent, "show_edit_funcs") 
 
                             if interface.local_doc_exists:
                                 textbutton _("Prefer the web documentation") style "l_checkbox" action ToggleField(persistent, "use_web_doc")
-
-                            textbutton _("Sponsor message") style "l_checkbox" action ToggleField(persistent, "sponsor_message")
 
                             textbutton _("Restore window position") style "l_checkbox" action Preference("restore window position", "toggle")
 

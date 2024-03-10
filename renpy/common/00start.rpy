@@ -272,6 +272,10 @@ label _start:
 
             renpy.game.context().force_checkpoint = True
             renpy.jump(_restart[1])
+    if persistent.run_dev:
+        $ config.developer = True
+    else:
+        $ config.developer = False
 
 label _invoke_main_menu:
 
