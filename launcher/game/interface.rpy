@@ -95,20 +95,6 @@ init python in interface:
 transform resize_logo:
     zoom 0.1
 
-#screen bottom_info:
-
-    #imagebutton idle "images/logo.png" at resize_logo action Jump("about")
-    #textbutton _("Documentation") style "l_link" action interface.OpenDocumentation()
-    #textbutton _("CARRY Website") style "l_link" action OpenURL(interface.RENPY_URL)
-    #textbutton _("[interface.version]") style "l_link" action Jump("about")
-    #if ability.can_update:
-    #    textbutton _("update") action Jump("update") style "l_link":
-    #        if persistent.has_update:
-    #            text_color "#F96854"
-    #            text_hover_color Color("#F96854").tint(.8)
-    #textbutton _("preferences") style "l_link" action Jump("preferences")
-    #textbutton _("quit") style "l_link" action Quit(confirm=False)
-
 screen common:
     default complete = None
     default total = None

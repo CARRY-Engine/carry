@@ -28,6 +28,7 @@ screen about:
         style "l_root"
 
         window:
+            yoffset 70
             xfill True
 
             has vbox xfill True
@@ -36,11 +37,19 @@ screen about:
 
             null height 15
 
-            text _("[version!q]") xalign 0.5 bold True
+            text _("[interface.version]") xalign 0.5 style "l_link" bold True
 
             null height 20
 
-            textbutton _("View license") action interface.OpenLicense() xalign 0.5
+            textbutton _("Preferences") xalign 0.5 action Jump("preferences")
+            textbutton _("View license") xalign 0.5 action interface.OpenLicense()
+            textbutton _("Documentation") xalign 0.5 action interface.OpenDocumentation()
+            textbutton _("CARRY Website") xalign 0.5 action OpenURL(interface.RENPY_URL)
+            if ability.can_update:
+                textbutton _("Update") xalign 0.5 action Jump("update"):
+                    if persistent.has_update:
+                        text_color "#F96854"
+                        text_hover_color Color("#F96854").tint(.8)
 
     textbutton _("Return") action Jump("front_page") style "l_left_button"
 

@@ -214,7 +214,7 @@ style l_right_button_text is l_default:
     size size(30)
 
 style l_left_button is l_right_button:
-    yoffset 20
+    yalign 0.85
     xoffset 10
     xalign 0.0
 

@@ -138,15 +138,12 @@ screen front_page_project:
         frame style "l_label":
             has hbox xfill True
 
-        frame style "l_indent":
-            has vbox
-
-            textbutton "Open project directory" action OpenDirectory(os.path.join(p.path, "."), absolute=True)
+        textbutton "Open project directory" action OpenDirectory(os.path.join(p.path, "."), absolute=True) xoffset 20
 
         add SPACER
 
         grid 2 1:
-            xfill True
+            xmaximum 400
             spacing HALF_INDENT
 
             frame style "l_indent":
