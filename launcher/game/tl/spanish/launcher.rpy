@@ -1,7 +1,7 @@
 ﻿translate spanish strings:
     # game/new_project.rpy:77
     old "{#language name and font}"
-    new "{font=fonts/Roboto-Light.ttf}Español{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Español{/font}"
 
     # about.rpy:39
     old "[version!q]"
@@ -2053,11 +2053,11 @@
 
     # game/preferences.rpy:327
     old "{#in language font}Welcome! Please choose a language"
-    new "{font=fonts/Roboto-Light.ttf}¡Bienvenido! Por favor elige un idioma{/font}"
+    new "{font=fonts/Rubik-Light.ttf}¡Bienvenido! Por favor elige un idioma{/font}"
 
     # game/preferences.rpy:327
     old "{#in language font}Start using Ren'Py in [lang_name]"
-    new "{font=fonts/Roboto-Light.ttf}Empieza a usar Ren'Py en [lang_name]{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Empieza a usar Ren'Py en [lang_name]{/font}"
 
     # game/distribute_gui.rpy:231
     old "(DLC)"

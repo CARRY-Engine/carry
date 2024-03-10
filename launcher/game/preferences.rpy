@@ -34,15 +34,10 @@ init python:
         if not languages:
             return None
 
-        languages.remove("piglatin")
-
         rv = [(i, renpy.translate_string("{#language name and font}", i)) for i in languages ]
         rv.sort(key=lambda a : renpy.filter_text_tags(a[1], allow=[]).lower())
 
         rv.insert(0, (None, "English"))
-
-        if piglatin:
-            rv.append(("piglatin", "Igpay Atinlay"))
 
         bound = ceil(len(rv)/3.)
         return (rv[:bound], rv[bound:2*bound], rv[2*bound:])
@@ -95,9 +90,7 @@ default preference_tab = "general"
 define preference_tabs = (
     ("general", _("General")),
     ("options", _("Options")),
-    ("theme", _("Theme")),
     ("install", _("Install Libraries")),
-    ("actions", _("Actions")),
     ("lint", _("Lint")),
 )
 
@@ -153,8 +146,6 @@ screen preferences():
 
                             text _("Projects Directory:")
 
-                            add HALF_SPACER
-
 
                             frame style "l_indent":
                                 if persistent.projects_directory:
@@ -165,22 +156,6 @@ screen preferences():
                                     textbutton _("Not Set"):
                                         action Jump("projects_directory_preference")
                                         alt _("Projects directory: [text]")
-
-                        add SPACER
-
-                        # Text editor selection.
-                        add SEPARATOR2
-
-                        frame:
-                            style "l_indent"
-                            has vbox
-
-                            text _("Text Editor:")
-
-                            add HALF_SPACER
-
-                            frame style "l_indent":
-                                textbutton (persistent.editor or _("Not Set")) action Jump("editor_preference") alt _("Text editor: [text]")
 
                         add SPACER
 
@@ -211,46 +186,18 @@ screen preferences():
                         xfill True
 
                         has vbox
-                        add SEPARATOR2
 
                         frame:
                             style "l_indent"
                             has vbox
-
-                            text _("Navigation Options:")
-
-                            add HALF_SPACER
 
                             textbutton _("Include private names") style "l_checkbox" action ToggleField(persistent, "navigate_private")
                             textbutton _("Include library names") style "l_checkbox" action ToggleField(persistent, "navigate_library")
-
-                        add SPACER
-                        add SEPARATOR2
-
-                        frame:
-                            style "l_indent"
-                            has vbox
-
-                            text _("Game Options:")
-
-                            add HALF_SPACER
 
                             if renpy.windows:
                                 textbutton _("Console output") style "l_checkbox" action ToggleField(persistent, "windows_console")
 
                             textbutton _("Skip splashscreen") style "l_checkbox" action ToggleField(persistent, "skip_splashscreen")
-
-                        add SPACER
-                        add SEPARATOR2
-
-                        frame:
-                            style "l_indent"
-                            has vbox
-
-                            text _("Launcher Options:")
-
-                            add HALF_SPACER
-
                             textbutton _("Show edit file section") style "l_checkbox" action ToggleField(persistent, "show_edit_funcs")
                             textbutton _("Large fonts") style "l_checkbox" action [ ToggleField(persistent, "large_print"), renpy.utter_restart ]
 
@@ -265,35 +212,6 @@ screen preferences():
                                 textbutton _("Daily check for update") style "l_checkbox" action [ToggleField(persistent, "daily_update_check"), SetField(persistent, "last_update_check", None)] selected persistent.daily_update_check
                                 textbutton _("Prefer RPU updates") style "l_checkbox" action ToggleField(persistent, "prefer_rpu")
 
-                elif preference_tab == "theme":
-
-                    frame:
-                        style "l_indent"
-                        xmaximum TWOTHIRDS
-                        xfill True
-
-                        has vbox
-
-                        add SEPARATOR2
-
-                        frame:
-                            style "l_indent"
-                            has vbox
-
-                            text _("Launcher Theme:")
-
-                            add HALF_SPACER
-
-                            textbutton _("Default theme") style "l_checkbox" action [SetField(persistent, "theme", None), RestartAtPreferences() ]
-                            textbutton _("Dark theme") style "l_checkbox" action [SetField(persistent, "theme", "dark"), RestartAtPreferences()]
-                            textbutton _("Custom theme") style "l_checkbox" action [SetField(persistent, "theme", "custom"), RestartAtPreferences()]
-
-                            add SPACER
-
-                            $ skins_url = interface.get_doc_url("skins.html")
-
-                            text _("Information about creating a custom theme can be found {a=[skins_url]}in the Ren'Py Documentation{/a}.")
-
                 elif preference_tab == "install":
 
                     frame:
@@ -302,8 +220,6 @@ screen preferences():
                         xfill True
 
                         has vbox
-
-                        add SEPARATOR2
 
                         frame:
                             style "l_indent"
@@ -315,37 +231,6 @@ screen preferences():
 
                             use install_preferences
 
-                elif preference_tab == "actions":
-
-                    frame:
-                        style "l_indent"
-                        xmaximum TWOTHIRDS
-                        xfill True
-
-                        has vbox
-
-                        add SEPARATOR2
-
-                        frame:
-                            style "l_indent"
-                            has vbox
-
-                            text _("Actions:")
-
-                            add HALF_SPACER
-
-                            textbutton _("Open launcher project") style "l_nonbox" action [ project.Select("launcher"), Jump("front_page") ]
-                            textbutton _("Open projects.txt"):
-                                style "l_nonbox"
-                                if project.manager.projects_directory:
-                                    action [
-                                        EnsureProjectsTxt(),
-                                        editor.EditAbsolute(os.path.join(project.manager.projects_directory, "projects.txt"))
-                                    ]
-
-                            textbutton _("Reset window size") style "l_nonbox" action Preference("display", 1.0)
-                            textbutton _("Clean temporary files") style "l_nonbox" action Jump("clean_tmp")
-
                 elif preference_tab == "lint":
 
                     frame:
@@ -354,8 +239,6 @@ screen preferences():
                         xfill True
 
                         has vbox
-
-                        add SEPARATOR2
 
                         frame:
                             style "l_indent"

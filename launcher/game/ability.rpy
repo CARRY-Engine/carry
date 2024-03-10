@@ -30,7 +30,7 @@ init 1 python in ability:
 
     import os
 
-    EXECUTABLES = [ "renpy.exe", "renpy.app", "renpy.sh" ]
+    EXECUTABLES = [ "carry.exe", "carry.app", "carry.sh" ]
 
     # can_distribute - True if we can distribute
     for i in EXECUTABLES:

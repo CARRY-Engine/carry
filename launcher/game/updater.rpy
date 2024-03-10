@@ -163,7 +163,7 @@ screen updater:
             elif u.state == u.CHECKING:
                 text _("Checking for updates.")
             elif u.state == u.UPDATE_NOT_AVAILABLE:
-                text _("Ren'Py is up to date.")
+                text _("CARRY is up to date.")
             elif u.state == u.UPDATE_AVAILABLE:
                 text _("[u.version] is now available. Do you want to install it?")
             elif u.state == u.PREPARING:
@@ -196,7 +196,7 @@ screen updater:
                         value (u.progress or 0.0)
                         style "l_progress_bar"
 
-        label _("Ren'Py Update") style "l_info_label"
+        label _("CARRY Update") style "l_info_label"
 
     if u.can_cancel:
         textbutton _("Cancel") action u.cancel style "l_left_button"

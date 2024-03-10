@@ -87,69 +87,29 @@ init python in interface:
 
     # Version.
     import re
-    version = re.sub(r'\.\d+(\w*)$', r'\1', renpy.version())
+    version = "CARRY "+renpy.version()
 
 # This displays the bottom of the screen. If the tooltip is not None, this displays the
 # tooltip. Otherwise, it displays a list of links (to various websites, and to the
 # preferences and update screen), or is just blank.
-screen bottom_info:
+transform resize_logo:
+    zoom 0.1
 
-    zorder 100
+#screen bottom_info:
 
-    if interface.links:
-
-        frame:
-            style_group "l"
-            style "l_default"
-
-            left_margin (10 + INDENT)
-            right_margin (10 + INDENT)
-            xfill True
-            ypos 536
-            yanchor 0.0
-
-            has vbox:
-                spacing 20
-
-            hbox:
-                xfill True
-
-                hbox:
-                    spacing INDENT
-                    textbutton _("Documentation") style "l_link" action interface.OpenDocumentation()
-                    textbutton _("Ren'Py Website") style "l_link" action OpenURL(interface.RENPY_URL)
-                    textbutton _("[interface.version]") style "l_link" action Jump("about")
-
-                hbox:
-                    spacing INDENT
-                    xalign 1.0
-
-                    if ability.can_update:
-                        textbutton _("update") action Jump("update") style "l_link":
-                            if persistent.has_update:
-                                text_color "#F96854"
-                                text_hover_color Color("#F96854").tint(.8)
-
-                    textbutton _("preferences") style "l_link" action Jump("preferences")
-                    textbutton _("quit") style "l_link" action Quit(confirm=False)
-
-            if persistent.sponsor_message:
-
-                textbutton _("Ren'Py Sponsor Information"):
-                    style "l_link"
-                    text_color "#F96854"
-                    text_hover_color Color("#F96854").tint(.8)
-
-                    xalign 0.0
-                    yalign 1.0
-                    yoffset -10
-
-                    action OpenURL(interface.get_sponsor_url())
-
-
+    #imagebutton idle "images/logo.png" at resize_logo action Jump("about")
+    #textbutton _("Documentation") style "l_link" action interface.OpenDocumentation()
+    #textbutton _("CARRY Website") style "l_link" action OpenURL(interface.RENPY_URL)
+    #textbutton _("[interface.version]") style "l_link" action Jump("about")
+    #if ability.can_update:
+    #    textbutton _("update") action Jump("update") style "l_link":
+    #        if persistent.has_update:
+    #            text_color "#F96854"
+    #            text_hover_color Color("#F96854").tint(.8)
+    #textbutton _("preferences") style "l_link" action Jump("preferences")
+    #textbutton _("quit") style "l_link" action Quit(confirm=False)
 
 screen common:
-
     default complete = None
     default total = None
     default yes = None

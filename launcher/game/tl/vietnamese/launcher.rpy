@@ -1,7 +1,7 @@
 ﻿translate vietnamese strings:
     # game/new_project.rpy:77
     old "{#language name and font}"
-    new "{font=fonts/Roboto-Light.ttf}Tiếng Việt{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Tiếng Việt{/font}"
 
     # about.rpy:39
     old "[version!q]"

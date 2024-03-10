@@ -1,7 +1,7 @@
 ﻿translate greek strings:
     # game/new_project.rpy:77
     old "{#language name and font}"
-    new "{font=fonts/Roboto-Light.ttf}Ελληνικά{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Ελληνικά{/font}"
 
     # about.rpy:39
     old "[version!q]"

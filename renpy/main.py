@@ -482,10 +482,6 @@ def main():
     game.persistent = renpy.persistent.init()
     game.preferences = game.persistent._preferences
 
-    for i in renpy.game.persistent._seen_translates: # type: ignore
-        if i in renpy.game.script.translator.default_translates:
-            renpy.game.seen_translates_count += 1
-
     if game.persistent._virtual_size:
         renpy.config.screen_width, renpy.config.screen_height = game.persistent._virtual_size
 

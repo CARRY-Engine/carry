@@ -60,14 +60,14 @@ init -99 python:
 
     # A displayable used for the background of windows
     # containing commands, preferences, and navigation info.
-    custom_window = Frame(Fixed(Solid(custom_reverse_idle, xsize=4, xalign=0), Solid(custom_info_window, xsize=794, xalign=1.0), xsize=800, ysize=600), 0, 0, tile=True)
+    custom_window = Frame(Fixed(Solid(custom_reverse_idle, xsize=4, xalign=0), Solid(custom_info_window, xsize=794, xalign=1.0), xsize=1920, ysize=1080), 0, 0, tile=True)
 
 
 init -1:
 
     # Fonts.
-    define gui.LIGHT_FONT = "fonts/Roboto-Light.ttf"
-    define gui.REGULAR_FONT = "fonts/Roboto-Regular.ttf"
+    define gui.LIGHT_FONT = "fonts/Rubik-Light.ttf"
+    define gui.REGULAR_FONT = "fonts/Rubik-Regular.ttf"
 
     # Used to scale the size of fonts.
     define gui.FONT_SCALE = 1.0
@@ -83,9 +83,9 @@ init -1 python:
     TEXT = "#545454"
 
     # Colors for buttons in various states.
-    IDLE = "#42637b"
-    HOVER = "#d86b45"
-    DISABLED = "#808080"
+    IDLE = "#B864EC"
+    HOVER = "#AA4CE5"
+    DISABLED = "#9F88AE"
 
     # Colors for reversed text buttons (selected list entries).
     REVERSE_IDLE = "#78a5c5"
@@ -93,8 +93,8 @@ init -1 python:
     REVERSE_TEXT = "#ffffff"
 
     # Colors for the scrollbar thumb.
-    SCROLLBAR_IDLE = "#dfdfdf"
-    SCROLLBAR_HOVER = "#d86b45"
+    SCROLLBAR_IDLE = "#E8C3FF"
+    SCROLLBAR_HOVER = "#EC9FF1"
 
     # An image used as a separator pattern.
     PATTERN = "images/pattern.png"
@@ -104,7 +104,7 @@ init -1 python:
 
     # A displayable used for the background of windows
     # containing commands, preferences, and navigation info.
-    WINDOW = Frame("window", 0, 0, tile=True)
+    WINDOW = None
 
     # A displayable used for the background of the projects list.
     PROJECTS_WINDOW = Null()
@@ -120,139 +120,6 @@ init -1 python:
 
     # The color of input text.
     INPUT_COLOR = "#d86b45"
-
-    if persistent.theme == 'dark':
-        # The color of non-interactive text.
-        TEXT = "#ababab"
-
-        # Colors for buttons in various states.
-        IDLE = "#709cbe"
-        HOVER = "#d86b45"
-        DISABLED = "#7f7f7f"
-
-        # Colors for reversed text buttons (selected list entries).
-        REVERSE_IDLE = "#78a5c5"
-        REVERSE_HOVER = "#d86b45"
-        REVERSE_TEXT = "#0a0a0a"
-
-        # Colors for the scrollbar thumb.
-        SCROLLBAR_IDLE = "#282828"
-        SCROLLBAR_HOVER = "#d86b45"
-
-        # An image used as a separator pattern.
-        PATTERN = "images/pattern.png"
-
-        # A displayable used for the background of everything.
-        BACKGROUND = Fixed(Solid(REVERSE_TEXT), xsize=800, ysize=600)
-
-        # A displayable used for the background of the projects list.
-        PROJECTS_WINDOW = Null()
-
-        # A displayable used the background of information boxes.
-        INFO_WINDOW = "#101010"
-
-        # Colors for the titles of information boxes.
-        ERROR_COLOR = "#d15353"
-        INFO_COLOR = "#ababab"
-        INTERACTION_COLOR = "#d19753"
-        QUESTION_COLOR = "#d19753"
-
-        # The color of input text.
-        INPUT_COLOR = "#d86b45"
-
-        # A displayable used for the background of windows
-        # containing commands, preferences, and navigation info.
-        WINDOW = Frame(Fixed(Solid(REVERSE_IDLE, xsize=4, xalign=0), Solid(INFO_WINDOW, xsize=794, xalign=1.0), xsize=800, ysize=600), 0, 0, tile=True)
-
-    elif persistent.theme == 'clear':
-
-        # The color of non-interactive text.
-        TEXT = "#545454"
-
-        # Colors for buttons in various states.
-        IDLE = "#42637b"
-        HOVER = "#d86b45"
-        DISABLED = "#808080"
-
-        # Colors for reversed text buttons (selected list entries).
-        REVERSE_IDLE = "#78a5c5"
-        REVERSE_HOVER = "#d86b45"
-        REVERSE_TEXT = "#ffffff"
-
-        # Colors for the scrollbar thumb.
-        SCROLLBAR_IDLE = "#dfdfdf"
-        SCROLLBAR_HOVER = "#d86b45"
-
-        # An image used as a separator pattern.
-        PATTERN = "images/pattern.png"
-
-        # A displayable used for the background of everything.
-        BACKGROUND = Fixed(Solid(REVERSE_TEXT), xsize=800, ysize=600)
-
-        # A displayable used for the background of the projects list.
-        PROJECTS_WINDOW = Null()
-
-        # A displayable used the background of information boxes.
-        INFO_WINDOW = "#f9f9f9"
-
-        # Colors for the titles of information boxes.
-        ERROR_COLOR = "#d15353"
-        INFO_COLOR = "#545454"
-        INTERACTION_COLOR = "#d19753"
-        QUESTION_COLOR = "#d19753"
-
-        # The color of input text.
-        INPUT_COLOR = "#d86b45"
-
-        # A displayable used for the background of windows
-        # containing commands, preferences, and navigation info.
-        WINDOW = Frame(Fixed(Solid(REVERSE_IDLE, xsize=4, xalign=0), Solid(INFO_WINDOW, xsize=794, xalign=1.0), xsize=800, ysize=600), 0, 0, tile=True)
-
-    elif persistent.theme == 'custom':
-
-        # The color of non-interactive text.
-        TEXT = custom_text
-
-        # Colors for buttons in various states.
-        IDLE = custom_idle
-        HOVER = custom_hover
-        DISABLED = custom_disable
-
-        # Colors for reversed text buttons (selected list entries).
-        REVERSE_IDLE = custom_reverse_idle
-        REVERSE_HOVER = reverse_hover
-        REVERSE_TEXT = custom_reverse_text
-
-        # Colors for the scrollbar thumb.
-        SCROLLBAR_IDLE = custom_scrollbar_idle
-        SCROLLBAR_HOVER = custom_scrollbar_hover
-
-        # An image used as a separator pattern.
-        PATTERN = custom_pattern
-
-        # A displayable used for the background of everything.
-        BACKGROUND = custom_background
-
-        # A displayable used for the background of the projects list.
-        PROJECTS_WINDOW = custom_projects_window
-
-        # A displayable used the background of information boxes.
-        INFO_WINDOW = custom_info_window
-
-        # Colors for the titles of information boxes.
-        ERROR_COLOR = custom_error_color
-        INFO_COLOR = custom_info_color
-        INTERACTION_COLOR = custom_interaction_color
-        QUESTION_COLOR = custom_question_color
-
-        # The color of input text.
-        INPUT_COLOR = custom_input_color
-
-        # A displayable used for the background of windows
-        # containing commands, preferences, and navigation info.
-        WINDOW = custom_window
-
-
 
 init 1 python:
 
@@ -336,6 +203,8 @@ style l_link_text is l_default:
 
 # Action buttons on the bottom of the screen.
 style l_right_button is l_default:
+    yoffset 20
+    xoffset -10
     xalign 1.0
     ypos 600 - 128 + 12
     left_margin 8 + INDENT
@@ -345,6 +214,8 @@ style l_right_button_text is l_default:
     size size(30)
 
 style l_left_button is l_right_button:
+    yoffset 20
+    xoffset 10
     xalign 0.0
 
 style l_left_button_text is l_right_button_text
@@ -371,12 +242,10 @@ style l_label is l_default:
     top_padding 10
     bottom_padding 8
     bottom_margin 12
-    background SEPARATOR
 
 style l_label_text is l_default:
     size size(24)
-    xpos INDENT
-    yoffset 6
+    xoffset 20
 
 style l_label_small is l_default:
     xfill True
@@ -414,6 +283,7 @@ style l_small_text is l_text:
 
 # Indents its contents.
 style l_indent is l_default:
+    xalign 0.5
     left_margin INDENT
 
 # Indents its contents and pads vertically.
@@ -463,11 +333,6 @@ style l_info_vbox is vbox:
 style l_info_frame is l_default:
     ypadding 21
     xfill True
-    background Fixed(
-        INFO_WINDOW,
-        Frame(PATTERN, 0, 0, tile=True, ymaximum=5, yalign=0.0, yoffset=8),
-        Frame(PATTERN, 0, 0, tile=True, ymaximum=5, yalign=1.0, yoffset=-8),
-        )
     yminimum 180
     ypos 75
 

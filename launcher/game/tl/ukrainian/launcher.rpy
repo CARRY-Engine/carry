@@ -1311,7 +1311,7 @@ translate ukrainian strings:
 
     # game/new_project.rpy:77
     old "{#language name and font}"
-    new "{font=fonts/Roboto-Light.ttf}Українська{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Українська{/font}"
 
     # game/new_project.rpy:81
     old "You will be creating an [new_project_language]{#this substitution may be localized} language project. Change the launcher language in preferences to create a project in another language."

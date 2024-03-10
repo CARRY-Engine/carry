@@ -1,7 +1,7 @@
 ﻿translate french strings:
     # game/new_project.rpy:77
     old "{#language name and font}"
-    new "{font=fonts/Roboto-Light.ttf}Français{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Français{/font}"
 
     # about.rpy:39
     old "[version!q]"
@@ -2086,11 +2086,11 @@
 
     # game/preferences.rpy:327
     old "{#in language font}Welcome! Please choose a language"
-    new "{font=fonts/Roboto-Light.ttf}Bienvenue ! Choisissez une langue{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Bienvenue ! Choisissez une langue{/font}"
 
     # game/preferences.rpy:327
     old "{#in language font}Start using Ren'Py in [lang_name]"
-    new "{font=fonts/Roboto-Light.ttf}Commencez à utiliser Ren'Py en [lang_name]{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Commencez à utiliser Ren'Py en [lang_name]{/font}"
 
     # game/distribute_gui.rpy:231
     old "(DLC)"

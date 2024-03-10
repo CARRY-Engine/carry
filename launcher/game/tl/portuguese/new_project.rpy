@@ -33,4 +33,4 @@
 
     # game/new_project.rpy:77
     old "{#language name and font}"
-    new "{font=fonts/Roboto-Light.ttf}Português{/font}"
+    new "{font=fonts/Rubik-Light.ttf}Português{/font}"

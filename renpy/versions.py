@@ -165,7 +165,6 @@ def generate_vc_version(nightly=False):
 
     return version_dict
 
-
 def main():
     import argparse
 
@@ -174,7 +173,6 @@ def main():
     args = ap.parse_args()
 
     generate_vc_version(nightly=args.nightly)
-
 
 if __name__ == "__main__":
     main()

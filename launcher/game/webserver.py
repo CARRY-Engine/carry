@@ -31,7 +31,7 @@ class WebHandler(http.server.BaseHTTPRequestHandler):
 
     """
 
-    server_version = "Ren'Py/" + renpy.version_only # @UndefinedVariable
+    server_version = "CARRY/" + renpy.version_only # @UndefinedVariable
 
     def do_GET(self):
         """Serve a GET request."""

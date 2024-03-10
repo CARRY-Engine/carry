@@ -29,6 +29,7 @@
 # appropriate.
 
 init -1 python hide:
+    from renpy.vc_version import version
 
     # Update the searchpath to find additional fonts.
     config.searchpath.append(config.renpy_base + "/sdk-fonts")
@@ -41,18 +42,18 @@ init -1 python hide:
 
     # These control the width and height of the screen.
 
-    config.screen_width = 800
-    config.screen_height = 600
+    config.screen_width = 1280
+    config.screen_height = 720
 
     # This controls the title of the window, when Ren'Py is
     # running in a window.
 
-    config.window_title = u"Ren'Py Launcher"
+    config.window_title = u"CARRY Launcher"
 
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
-    config.name = "Ren'Py Launcher"
-    config.version = renpy.version().split()[1]
+    config.name = "CARRY Launcher"
+    config.version = version
 
     #####################
     # Themes
@@ -163,7 +164,7 @@ init -1 python hide:
     # stored. (It needs to be set early, before any other init code
     # is run, so the persistent information can be found by the init code.)
 python early:
-    config.save_directory = "launcher-4"
+    config.save_directory = "carry-engine"
 
 init -1 python hide:
     #####################
@@ -222,21 +223,21 @@ init python:
     build.renpy = True
 
     # The version number that's supplied to the updater.
-    build.version = "Ren'Py {}".format(config.version)
+    build.version = "CARRY {}".format(config.version)
 
     # The name that's used for directories and archive files. For example, if
     # this is 'mygame-1.0', the windows distribution will be in the
     # directory 'mygame-1.0-win', in the 'mygame-1.0-win.zip' file.
 
     if 'RENPY_BUILD_VERSION' in os.environ:
-        build.directory_name = "renpy-" + os.environ['RENPY_BUILD_VERSION']
+        build.directory_name = "carry-" + os.environ['RENPY_BUILD_VERSION']
     else:
-        build.directory_name = "renpy-" + config.version.rsplit('.', 1)[0]
+        build.directory_name = "carry-" + config.version.rsplit('.', 1)[0]
 
     # The name that's uses for executables - the program that users will run
     # to start the game. For example, if this is 'mygame', then on Windows,
     # users can click 'mygame.exe' to start the game.
-    build.executable_name = "renpy"
+    build.executable_name = "carry"
 
     # If True, Ren'Py will include update information into packages. This
     # allows the updater to run.
