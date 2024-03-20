@@ -1,7 +1,7 @@
 ﻿translate japanese strings:
     # game/new_project.rpy:77
     old "{#language name and font}"
-    new "{font=SourceHanSansLite.ttf}日本語{/font}"
+    new "{font=Rubik-Regular.ttf}日本語{/font}"
 
     # about.rpy:39
     old "[version!q]"
@@ -2049,11 +2049,11 @@
 
     # game/preferences.rpy:338
     old "{#in language font}Welcome! Please choose a language"
-    new "{font=SourceHanSansLite.ttf}言語を選択してください{/font}"
+    new "{font=Rubik-Regular.ttf}言語を選択してください{/font}"
 
     # game/preferences.rpy:373
     old "{#in language font}Start using Ren'Py in [lang_name]"
-    new "{font=SourceHanSansLite.ttf}[lang_name]でRen'Pyの使用を開始します{/font}"
+    new "{font=Rubik-Regular.ttf}[lang_name]でRen'Pyの使用を開始します{/font}"
 
     # game/project.rpy:280
     old "This may be because the project is not writeable."

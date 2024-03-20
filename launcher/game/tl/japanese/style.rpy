@@ -1,5 +1,5 @@
 ﻿init python:
-    translate_font("japanese", "SourceHanSansLite.ttf")
+    translate_font("japanese", "Rubik-Regular.ttf")
     translate_define("japanese", "gui.language", "'japanese-normal'")
 
 translate japanese python:

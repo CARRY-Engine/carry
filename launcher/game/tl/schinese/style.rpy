@@ -1,2 +1,2 @@
 ﻿init python:
-    translate_font("schinese", "SourceHanSansLite.ttf")
+    translate_font("schinese", "Rubik-Regular.ttf")

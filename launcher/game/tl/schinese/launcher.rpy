@@ -1298,7 +1298,7 @@
 
     # game/new_project.rpy:77
     old "{#language name and font}"
-    new "{font=SourceHanSansLite.ttf}简体中文{/font}"
+    new "{font=Rubik-Regular.ttf}简体中文{/font}"
 
     # game/new_project.rpy:81
     old "You will be creating an [new_project_language]{#this substitution may be localized} language project. Change the launcher language in preferences to create a project in another language."
@@ -1450,11 +1450,11 @@
 
     # game/preferences.rpy:338
     old "{#in language font}Welcome! Please choose a language"
-    new "{font=SourceHanSansLite.ttf}欢迎！请选择一种语言"
+    new "{font=Rubik-Regular.ttf}欢迎！请选择一种语言"
 
     # game/preferences.rpy:373
     old "{#in language font}Start using Ren'Py in [lang_name]"
-    new "{font=SourceHanSansLite.ttf}开始以[lang_name]使用 Ren'Py"
+    new "{font=Rubik-Regular.ttf}开始以[lang_name]使用 Ren'Py"
 
     # game/project.rpy:46
     old "After making changes to the script, press shift+R to reload your game."
