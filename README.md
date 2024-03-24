@@ -9,6 +9,7 @@ The CARRY engine is an official fork of the Ren'Py engine. It is NOT a fully pro
 - [@hyperskII942](https://www.github.com/hyperskII942)
 - [@Wolframoviy](https://www.github.com/Wolframoviy)
 - [@MetaRunnerBS](https://www.github.com/MetaRunnerBS)
+- [@NekoLaiS](https://www.github.com/NekoLaiS)
 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
