@@ -4,6 +4,7 @@
 /log.txt
 /traceback.txt
 /errors.txt
+/renpy/__pycache__
 *.rpyc
 *.rpymc
 *.rpyb

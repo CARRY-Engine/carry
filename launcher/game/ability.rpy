@@ -30,7 +30,7 @@ init 1 python in ability:
 
     import os
 
-    EXECUTABLES = [ "carry.exe", "carry.app", "carry.sh" ]
+    EXECUTABLES = [ "carry.exe", "carry.app", "carry.sh", "carry.py"]
 
     # can_distribute - True if we can distribute
     for i in EXECUTABLES:
